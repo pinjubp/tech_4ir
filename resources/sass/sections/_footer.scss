@@ -1,0 +1,38 @@
+@import '../custom';
+
+#footer{
+    background-color: $black;
+
+    .container{
+        padding: 20px 10px;
+
+        h3{
+            font-size: large;
+            font-weight: 600;
+            color: $white;
+        }
+
+        h4{
+            font-size:medium;
+            font-weight: 600;
+            color: $white;
+        }
+
+        p{
+            color: $white;   
+        }
+        
+        .col{
+            padding: 0 10px;
+
+            li{
+                display: block;
+
+                a{
+                    color: $white; 
+                }
+            }
+        }
+    }
+}
+

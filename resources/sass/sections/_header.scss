@@ -1,0 +1,54 @@
+header{
+    border-top: 10px solid $green-dark;
+    margin-bottom: 30px;
+    
+
+    .logo{
+        width: 300px;
+        height: 100px;
+        text-align: center;
+        background-color: $green-dark;
+        color: $white;
+        font-size: 18px;
+        display: block;
+        padding-top: 10px;
+        text-decoration: none;
+
+        &:hover{
+            color: $white;
+            text-decoration: none;
+        }
+
+
+        @include media-breakpoint-down(sm){
+            width: 200px;
+            font-size: 14px;
+        }
+
+       
+    }
+
+    // .leftbg{
+    //     background-color: brown;
+    // }
+    // .rightbg{
+    //     background-color: rgb(42, 165, 95);
+    // }
+    
+
+    .nav{
+        float:right;
+        padding-top: 20px;
+
+        @include media-breakpoint-down(sm){
+            float:left;
+        }
+        
+    }
+
+    .fixed-top {
+	    top: -40px;
+	    transform: translateY(40px);
+	    transition: transform .3s;
+	}
+}

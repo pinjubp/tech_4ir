@@ -1,0 +1,85 @@
+@import '../custom';
+
+#dashboard{
+
+    
+
+    .boxround{
+       
+        padding: 10px;               
+        display: block;
+        border-radius: 5px;
+        border: 2px solid $primary;
+    }
+    
+
+    .nav-tabs{
+        padding-bottom:0;
+        margin-bottom: 0;
+        
+        
+
+        .nav-item{
+            padding-bottom:0;
+            margin-bottom: 0;
+           
+            .nav-link{
+
+                border: 1px solid $primary;
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+            .active{
+                border: 2px solid $primary;
+                border-bottom: none;
+            }
+        }
+    }
+
+    .tab-content{
+        border-top:0;
+
+        .tab-pane{
+            border-top:0;
+        }
+    }
+
+}
+
+#Profile{
+   
+    display: block;
+    background-color:#d1e7dd;
+    color: $black;
+    padding: 10px ;
+
+    img{
+        width: 150px;
+        height: 150px;
+        margin: 0  auto;
+    }
+
+    ul{
+        list-style: none;
+        li{
+            list-style: none;
+        }
+    }
+
+    i{
+        font-size: 20px;
+        color: black;
+        display: block;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+
+
+
+
+
+
+
+

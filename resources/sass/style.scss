@@ -1,0 +1,21 @@
+@import  'custom';
+
+
+/*IMPORT THE COMPONENTS*/
+
+@import 'components/animations';
+@import 'components/buttons';
+@import 'components/mixins';
+@import 'components/typography';
+
+/*IMPORT THE SECTIONS*/
+@import 'sections/header';
+@import 'sections/navbar';
+@import 'sections/intro_section';
+@import 'sections/home_item';
+@import 'sections/carousel';
+@import 'sections/dashboard';
+@import 'sections/footer';
+@import 'sections/loginsignup';
+
+
