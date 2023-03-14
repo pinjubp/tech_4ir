@@ -114,10 +114,14 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::get('/specification/{id}', [ProductController::class, 'ProductSpecification'])->name('product.specification'); 
             Route::post('/specification/store/', [ProductController::class, 'ProductSpecificationStore'])->name('product.specification.store');
             Route::post('/specification/list/', [ProductController::class, 'ProductSpecificationList'])->name('product.specification.list');
-            
-            
-            
 
+            Route::get('/description/{id}', [ProductController::class, 'ProductDescription'])->name('product.description'); 
+            Route::post('/description/store/', [ProductController::class, 'ProductDescriptionStore'])->name('product.description.store');
+            Route::post('/description/list/', [ProductController::class, 'ProductDescriptionList'])->name('product.description.list');
+            Route::get('/description/edit/{id}', [ProductController::class, 'ProductDescriptionEdit'])->name('product.description.edit');
+            Route::get('/description/delete/{id}', [ProductController::class, 'ProductDescriptionDelete'])->name('product.description.delete');
+            
+            
         }); //prefix=product 
 
 

@@ -161,7 +161,7 @@
             html +=
             '<tr>'+
             '<td>'+data.specification_name+'</td>'+            
-            '<td><input type="text" class="form-control form-control-sm" id="specification_value"  name="specification_value" value="'+data.specification_value+'"></td>'+
+            '<td><input type="text" class="form-control form-control-sm" id="specification_value"  name="specification_value" value="'+data.specification_value.specification_value+'"></td>'+
             '<td><input type="hidden" class="form-control form-control-sm" id="specification_id" value="'+data.id+'"  name="specification_id" value=""></td>'+
             '<td><input type="hidden" class="form-control form-control-sm" id="product_id" value="'+data.product_id+'"  name="product_id" value=""></td>'+
             '</tr>';

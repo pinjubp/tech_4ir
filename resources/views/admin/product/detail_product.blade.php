@@ -163,7 +163,7 @@
                                       <div class=" row mt-3">
                                         <div class="ml-auto col-sm-12">
                                           <a href="{{ route('product.add') }}" class="btn btn-rounded btn-success"  >Add Another Product</a>
-                                          <a href="{{ route('product.specification',$product->id) }}" class="btn btn-rounded btn-success"  >Add specifications</a>
+                                          <a href="{{ route('product.description',$product->id) }}" class="btn btn-rounded btn-success"  >Add specifications</a>
                                         </div>
                                       </div>
                                      

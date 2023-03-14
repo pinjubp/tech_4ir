@@ -10,10 +10,12 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Specification;
+use App\Models\Description;
 use App\Models\SpecificationValue;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\Exists;
 
 class ProductController extends Controller
 {
@@ -224,9 +226,7 @@ class ProductController extends Controller
 
    public function ProductSpecificationStore(Request $request){
         //dd($request->toArray());
-        //$data = array();
-        // $data['specification_name'] = $request->specification_name;
-        // $data['product_id'] = $request->product_id;
+        
         
         $product = Product::find($request->product_id);
         //dd($product->toArray());
@@ -247,16 +247,16 @@ class ProductController extends Controller
             // $specification =  Specification::where('specification_name',$request->specification_name)
             //                 ->where('product_id',$request->product_id)  
             //                 ->first();
-            // $specification =  Specification::with(['SpecificationValue'])->where('specification_name',$request->specification_name)
-            //                 ->where('product_id',$request->product_id)  
-            //                 ->first();
+            $specification =  Specification::with(['SpecificationValue'])->where('specification_name',$request->specification_name)
+                            ->where('product_id',$request->product_id)  
+                            ->first();
 
-            $specification = DB::table('specifications')
-                           ->join('specification_values','specifications.id','specification_values.specification_id') 
-                           ->select('specifications.*','specification_values.specification_value')
-                           ->where('specifications.specification_name',$request->specification_name)
-                            ->where('specifications.product_id',$request->product_id)  
-                            ->first();    
+            // $specification = DB::table('specifications')
+            //                ->join('specification_values','specifications.id','specification_values.specification_id') 
+            //                ->select('specifications.*','specification_values.specification_value')
+            //                ->where('specifications.specification_name',$request->specification_name)
+            //                 ->where('specifications.product_id',$request->product_id)  
+            //                 ->first();    
          }
 
         
@@ -324,7 +324,81 @@ class ProductController extends Controller
 
         return response()->json($alldata);
 
+   }//end function
+
+   //==================ProductDescription=================================================
+
+
+
+
+   public function ProductDescription($id){
+    $product = Product::find($id);
+    //dd($product->toArray());
+    return view('admin.product.add_description',compact('product'));
+   }//end function
+
+   public function ProductDescriptionStore(Request $request){
+
+       
+
+        if(empty($request->id)){
+            $value = new Description;
+            $value->product_id = $request->product_id;
+            $value->specification_name = $request->specification_name;
+            $value->specification_value = $request->specification_value;
+            $value->save();
+
+        }else{
+            $value =  Description::find($request->id);
+
+            $value->product_id = $request->product_id;
+            $value->specification_name = $request->specification_name;
+            $value->specification_value = $request->specification_value;
+
+            $value->save();
+        }
+
+        $alldata = Description::where('product_id',$request->product_id )->get();
+
+        //dd($alldata->toArray());
+
+        //return response()->json($alldata);
+
+       
+        // $data = array(
+        //     'value'      => $alldata,
+        //     'message'   => 'successfully added',
+            
+        // );
+
+
+        return response()->json(['value' => $alldata   ,'success'=>'successfully added']);
+
+   }//end function
+
+   public function ProductDescriptionList(Request $request){
+    $alldata = Description::where('product_id',$request->product_id )->get();
+    return response()->json($alldata);
    }
+
+
+   public function ProductDescriptionEdit($id){
+    //dd($id);
+    $alldata = Description::find($id);
+    //dd($alldata->toArray());
+    return response()->json($alldata);
+    //return response()->json(['value' => $alldata   ,'success'=>'successfully edited']);
+   }//end function
+
+
+   public function ProductDescriptionDelete($id){
+    $deletedata = Description::find($id);
+    $product_id = $deletedata->product_id;
+    Description::find($id)->delete();
+    $alldata = Description::where('product_id',$product_id )->get();
+    return response()->json(['value' => $alldata ,'success' => 'successfully deleted']);
+   }
+
 
 
 
