@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Fronted\HomeController;
-use App\Http\Controllers\Fronted\UserController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\UserProductController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Backend\UserProfileController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SpecificationController;
 use App\Http\Controllers\Backend\SpecificationValueController;
+
 
 
 /*
@@ -120,6 +122,9 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::post('/description/list/', [ProductController::class, 'ProductDescriptionList'])->name('product.description.list');
             Route::get('/description/edit/{id}', [ProductController::class, 'ProductDescriptionEdit'])->name('product.description.edit');
             Route::get('/description/delete/{id}', [ProductController::class, 'ProductDescriptionDelete'])->name('product.description.delete');
+
+            Route::get('/des/add/', [ProductController::class, 'ProductDescriptionAdd'])->name('product.des.add');
+            
             
             
         }); //prefix=product 
@@ -160,8 +165,20 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::get('/profile_complete', [UserController::class, 'profileComplete'])->name('profile_complete');
             Route::post('/reset/password', [UserController::class, 'PasswordReset'])->name('user.reset.password'); 
             Route::post('/profile/store', [UserController::class, 'ProfileStore'])->name('profile.store'); 
+
+            //==================product==============================
+            Route::get('/product/upload', [UserProductController::class, 'ProductUpload'])->name('user.product.upload');
+            Route::get('/get/subcategory/{id}',[UserProductController::class ,'UserGetSubcategory'])->name('user.get.subcategory');
+            Route::post('/product/store', [UserProductController::class, 'UserProductStore'])->name('user.product.store');
+            Route::get('/product/detail/{id}',[UserProductController::class ,'UserProductDetail'])->name('user.product.detail');
+            
+            
+
+            
                         
         });
+
+
 
         Route::middleware([
             'auth:sanctum',

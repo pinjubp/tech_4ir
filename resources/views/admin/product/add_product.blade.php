@@ -215,7 +215,7 @@
             type:"GET",
             dataType:"json",
             success:function(data) {
-            ;  
+            
             var d =$('select[name="subcategory_id"]').empty();
             $.each(data, function(key, value){
 

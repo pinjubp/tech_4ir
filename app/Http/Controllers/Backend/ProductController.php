@@ -251,12 +251,7 @@ class ProductController extends Controller
                             ->where('product_id',$request->product_id)  
                             ->first();
 
-            // $specification = DB::table('specifications')
-            //                ->join('specification_values','specifications.id','specification_values.specification_id') 
-            //                ->select('specifications.*','specification_values.specification_value')
-            //                ->where('specifications.specification_name',$request->specification_name)
-            //                 ->where('specifications.product_id',$request->product_id)  
-            //                 ->first();    
+               
          }
 
         
@@ -274,11 +269,7 @@ class ProductController extends Controller
 
    public function ProductSpecificationList(Request $request){
 
-    // $data = array();
-
-    // $data['specification_value'] = $request->specification_value;
-    // $data['specification_id'] = $request->specification_id;
-    // $data['product_id'] = $request->product_id;
+   
 
     if(! SpecificationValue::where('specification_id',$request->specification_id)
     ->where('product_id',$request->product_id)
@@ -289,12 +280,12 @@ class ProductController extends Controller
             'specification_id' => $request->specification_id,
             'product_id' => $request->product_id,       
         ]);
-        // $id = DB::table('specification_values')->insertGetId($data);
+        
         
         $specification_values = SpecificationValue::find($id);
         
     } else {
-        // return Redirect()->back()->with('error', 'specification value already exist');
+        
 
         $spaceedit = SpecificationValue::where('specification_id',$request->specification_id)
         ->where('product_id',$request->product_id)->first();
@@ -309,9 +300,7 @@ class ProductController extends Controller
 
     }
 
-        // $specification_values = SpecificationValue::find($id);
-
-        //$alldata = Specification::with(['SpecificationValue'])->where('product_id',$specification_values->product_id)->get();
+        
 
         $alldata = DB::table('specification_values')
                     ->join('specifications','specification_values.specification_id','specifications.id')                    
@@ -360,17 +349,6 @@ class ProductController extends Controller
 
         $alldata = Description::where('product_id',$request->product_id )->get();
 
-        //dd($alldata->toArray());
-
-        //return response()->json($alldata);
-
-       
-        // $data = array(
-        //     'value'      => $alldata,
-        //     'message'   => 'successfully added',
-            
-        // );
-
 
         return response()->json(['value' => $alldata   ,'success'=>'successfully added']);
 
@@ -387,7 +365,7 @@ class ProductController extends Controller
     $alldata = Description::find($id);
     //dd($alldata->toArray());
     return response()->json($alldata);
-    //return response()->json(['value' => $alldata   ,'success'=>'successfully edited']);
+   
    }//end function
 
 
@@ -397,13 +375,15 @@ class ProductController extends Controller
     Description::find($id)->delete();
     $alldata = Description::where('product_id',$product_id )->get();
     return response()->json(['value' => $alldata ,'success' => 'successfully deleted']);
-   }
+   }//end function
 
 
+    public function ProductDescriptionAdd(){
+        $product  = Product::all();
+        //dd($product->toArray());
+        return view('admin.product.list_description',compact('product'));
+    } 
 
-
-
-   
 
 
 

@@ -122,8 +122,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="ti-more"></i>Add Spacifications</a></li>
-            <li><a href="#"><i class="ti-more"></i>Spacifications List</a></li>
+            <li><a href="{{ route('product.des.add') }}"><i class="ti-more"></i>Add Spacifications</a></li>            
            
           </ul>
         </li> 

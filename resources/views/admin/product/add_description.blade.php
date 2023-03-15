@@ -31,11 +31,12 @@
                     <div class="box-profile">                            
                         <div class="box p-15">		
                             <div class="box-body">  
+                                {{-- <h3 class="p-3 pl-0">{{ $product->product_name  }}</h3>  --}}
                                 {{-- <form method="POST" action="{{ route('product.specification.store') }}">
                                     @csrf  --}}
                                     <div class="row">                                        
                                         <div class="col-md-6">
-                                                                        
+                                                                       
                                             <div class="form-group">                                                                                      
                                                 <div class="mb-3 row">
                                                     <label for="specification_name" class="col-sm-4 col-form-label">Specification Name</label>

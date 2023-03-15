@@ -6,7 +6,7 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="{{ asset('frontend/images/Xiaomi-Mijia-Smart-Door-Lock-Youth-dizajn-5.png') }}"  class=" img-fluid w-100 h-75 " alt="">
+        <img src="{{ asset('frontend/images/Xiaomi-Mijia-Smart-Door-Lock-Youth-dizajn-5.png') }}"  class=" img-fluid w-100  h-75 " alt="">
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Example headline.</h1>

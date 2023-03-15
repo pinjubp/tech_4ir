@@ -6,10 +6,12 @@
     @if(Auth::user()->status == 0 )                
    
     <div class="alert  alert-success" role="alert">
-        To upload your product information please complete the profile
-    </div>
-    @include('admin.alert')
+        To upload your product information please wait for the admin approval and  please complete the profile
+    </div>  
+    @else
+       <a href="{{ route('user.product.upload')  }}" class="btn btn-primary mb-3">Please Upload Product Information</a>   
     @endif
+    @include('pages.alert')
     <div class="row">
         <div class="col-md-4">
             <h2></h2>
