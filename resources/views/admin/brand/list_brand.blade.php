@@ -49,6 +49,7 @@
                                <tr>
                                 <th>ID</th>
                                 <th>Category Name</th>
+                                <th>Brand Logo</th>
                                 <th>Action</th>
                                </tr>
                            </tfoot>

@@ -73,7 +73,7 @@
                             <div class="col-md-4"><label for="email">Category : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
                                 <select class="form-control select2" data-placeholder="Choose Category" name="category_id"  >
-                                    <option label="Choose Category"></option>
+                                    <option label="Choose Category">Category</option>
                                     @foreach ($category as $row )
                                     <option value="{{ $row->id }}">{{ $row->category_name }}</option>
                                     @endforeach
@@ -219,6 +219,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+  
   <script type="text/javascript">
     $(document).ready(function(){
    $('select[name="category_id"]').on('change',function(){
@@ -296,4 +297,6 @@
       }
     }
   </script>
+  <script src="{{ asset('adminbackend/../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+  <script src="{{ asset('adminbackend/js/pages/editor.js') }}"></script>
 @endsection

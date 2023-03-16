@@ -8,18 +8,29 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Description;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class UserProductController extends Controller
 {
-    //
+    /**
+     * prevent user  accessing from uploading product 
+     * editing product etc....
+    */
+
+    public function __construct(){
+        $this->middleware('userStatus');       
+    }
     public function ProductUpload(){
-        $data['category'] = Category::all();
-        $data['subcategory'] = SubCategory::all();
-        $data['brand'] = Brand::all();
-        return view('pages.product.upload_product',$data);
+
+        
+            $data['category'] = Category::all();
+            $data['subcategory'] = SubCategory::all();
+            $data['brand'] = Brand::all();
+            return view('pages.product.upload_product',$data);
+        
     }//end function
 
     public function UserGetSubcategory($id){
@@ -32,6 +43,8 @@ class UserProductController extends Controller
 
     public function UserProductStore(Request $request){
         //dd($request->toArray());
+
+        
 
         $data = new Product();
 
@@ -77,45 +90,51 @@ class UserProductController extends Controller
 
        
             return Redirect()->route('user.product.detail',$data->id)->with('success', 'Product inserted successfully');
-
+       
 
     }//end function
 
     public function UserProductDetail($id){
-        $data['product'] =Product::find($id);
-        //dd($data['product']->subcategory_id);
-        //$data['user'] = User::where('id',$data['product']->user_id)->first();
-        $data['category'] = Category::where('id',$data['product']->category_id)->first();   
-        //if(!($data['product']->subcategory_id == null)){
-            $data['subcategory']  = SubCategory::where('id',$data['product']->subcategory_id)->first();
-        //}
-        $data['brand'] = Brand::where('id',$data['product']->brand_id)->first();  
+       
+            $data['product'] =Product::find($id);
+            //dd($data['product']->subcategory_id);
+            //$data['user'] = User::where('id',$data['product']->user_id)->first();
+            $data['category'] = Category::where('id',$data['product']->category_id)->first();   
+            //if(!($data['product']->subcategory_id == null)){
+                $data['subcategory']  = SubCategory::where('id',$data['product']->subcategory_id)->first();
+            //}
+            $data['brand'] = Brand::where('id',$data['product']->brand_id)->first();  
+            
+            return view('pages.product.detail_userproduct',$data);
         
-        return view('pages.product.detail_userproduct',$data);
     
        }//end function
 
        public function ProductList(){
-         $product =   Product::where('user_id',Auth::user()->id )->get();
-         
-        // dd($product->toArray());
+        
+            $product =   Product::where('user_id',Auth::user()->id )->get();
+            
+            // dd($product->toArray());
 
-         return view('pages.product.list_userproduct',compact('product'));
+            return view('pages.product.list_userproduct',compact('product'));
+        
         
 
        }//end function
 
        public function UserProductEdit($id){
-          
+         
         $data['product'] =Product::find($id);    
         $data['category'] = Category::all();   
         $data['subcategory']  = SubCategory::where('category_id',$data['product']->category_id)->get();
         $data['brand'] = Brand::all();
         //dd($data['product']->toArray()); 
         return view('pages.product.edit_userproduct',$data);
+        
        }//end function
 
        public function UserProductUpdate(Request $request,$id){
+       
         $data =Product::find($id);
 
         $data->product_name = $request->product_name;
@@ -176,6 +195,58 @@ class UserProductController extends Controller
     
        
             return Redirect()->route('user.product.list')->with('success', 'Product inserted successfully');
-       }
+        
+       }//end function
+
+       public function UserProductDescription($id){
+            $product = Product::find($id);
+            return view('pages.product.user_productdescription',compact('product'));
+       }//end function
+
+       public function UserProductDescriptionList(Request $request){
+        $alldata = Description::where('product_id',$request->product_id )->get();
+        return response()->json($alldata);
+       }//end function
+
+       public function UserProductDescriptionStore(Request $request){
+            
+
+        if(empty($request->id)){
+            $value = new Description;
+            $value->product_id = $request->product_id;
+            $value->specification_name = $request->specification_name;
+            $value->specification_value = $request->specification_value;
+            $value->save();
+
+        }else{
+            $value =  Description::find($request->id);
+
+            $value->product_id = $request->product_id;
+            $value->specification_name = $request->specification_name;
+            $value->specification_value = $request->specification_value;
+
+            $value->save();
+        }
+
+        $alldata = Description::where('product_id',$request->product_id )->get();
+
+
+        return response()->json(['value' => $alldata   ,'success'=>'successfully added']);
+       }//end function
+
+
+       public function UserProductDescriptionEdit($id){
+        $alldata = Description::find($id);
+        //dd($alldata->toArray());
+        return response()->json($alldata);
+       }//end function
+
+       public function UserProductDescriptionDelete($id){
+        $deletedata = Description::find($id);
+        $product_id = $deletedata->product_id;
+        Description::find($id)->delete();
+        $alldata = Description::where('product_id',$product_id )->get();
+        return response()->json(['value' => $alldata ,'success' => 'successfully deleted']);
+       }//end function
 
 }

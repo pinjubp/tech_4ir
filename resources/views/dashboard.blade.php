@@ -5,20 +5,18 @@
     
     @if(Auth::user()->status == 0 )                
    
-    {{-- <div class="alert  alert-success" role="alert">
-        To upload your product information please wait for the admin approval and  please complete the profile
-    </div>   --}}
+    
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        Please Upload Product Information
+       To upload your product information please wait for the admin approval and  please complete the profile
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @else
-       {{-- <a href="{{ route('user.product.upload')  }}" class="btn btn-primary mb-3">Please Upload Product Information</a>    --}}
+       
        <div class="alert alert-warning alert-dismissible fade show" role="alert">
             Please Upload Product Information
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    @endif
+    @endif 
     @include('pages.alert')
     <div class="row">
         <div class="col-md-4">
@@ -28,12 +26,15 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('dashboard') }}">Profile</a>
                     </li>
+                    @if(Auth::user()->status == 1 ) 
                     <li class="nav-item">
                     <a class="nav-link " href="{{ route('user.product.list') }}">Product List</a>
                     </li>
+                   
                     <li class="nav-item ">
                     <a class="nav-link" href="{{ route('user.product.upload')  }}">Upload Product</a>
-                    </li>                            
+                    </li>  
+                    @endif                          
                 </ul>
             </div>
             <!--endsidenav-->

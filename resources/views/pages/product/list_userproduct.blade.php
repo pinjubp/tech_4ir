@@ -71,7 +71,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Product Name</th>
+                                    <th width="35%">Product Name</th>
                                     <th>Product Code</th>
                                     <th>Selling Price</th>
                                     <th>Image</th>

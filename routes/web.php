@@ -174,10 +174,14 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::get('/product/list', [UserProductController::class, 'ProductList'])->name('user.product.list');
             Route::get('/product/edit/{id}',[UserProductController::class ,'UserProductEdit'])->name('user.product.edit');
             Route::post('/product/update/{id}',[UserProductController::class ,'UserProductUpdate'])->name('user.product.update');
-            
-            
-            
+            Route::get('/product/description/{id}', [UserProductController::class, 'UserProductDescription'])->name('user.product.description');
+            Route::post('/product/description/list/', [UserProductController::class, 'UserProductDescriptionList'])->name('user.product.description.list');
+            Route::post('/product/description/store/', [UserProductController::class, 'UserProductDescriptionStore'])->name('user.product.description.store');            
+            Route::get('/product/description/edit/{id}', [UserProductController::class, 'UserProductDescriptionEdit'])->name('user.product.description.edit');
+            Route::get('/product/description/delete/{id}', [UserProductController::class, 'UserProductDescriptionDelete'])->name('user.product.description.delete');
 
+            
+                        
             
                         
         });
@@ -190,7 +194,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             'verified'
         ])->group(function () {
             Route::get('/dashboard', function () {
-                return view('dashboard');
+               return view('dashboard');
+                
             })->name('dashboard');
         });
        

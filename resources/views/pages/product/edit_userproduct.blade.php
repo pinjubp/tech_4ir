@@ -217,7 +217,10 @@
                         <!--endformgroup-->
 
                         <div class="row form-group pt-5 pb-1">
-                            <div class="col-md-4"> <input type="submit" class="btn btn-rounded btn-primary" value="Update"></div>                        
+                            <div class="col-md-6">
+                                 <input type="submit" class="btn btn-rounded btn-primary mr-3" value="Update">                       
+                                <a href="{{ route('user.product.description',$product->id) }}" class="btn btn-rounded btn-secondary mr-3"  >Add Technical specifications</a>
+                            </div> 
                         </div>
                         <!--endformgroup-->
 

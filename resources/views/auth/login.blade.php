@@ -26,7 +26,8 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
                                 </div>
-                                <input name="email" type="email" value="" class="input form-control" id="email" placeholder="email" aria-label="email" aria-describedby="basic-addon1" />
+                                {{-- <input name="email" type="email" value="" class="input form-control" id="email" placeholder="email" aria-label="email" aria-describedby="basic-addon1" /> --}}
+                                <input type="text"  class="input form-control" name="email" id="email" :value="old('email')" placeholder="email@example.com" required>
                               </div>
                               @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -43,7 +44,8 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                                 </div>
-                                <input name="password" type="password" value="" class="input form-control" id="password" placeholder="password" required="true" aria-label="password" aria-describedby="basic-addon1" />
+                                {{-- <input name="password" type="password" value="" class="input form-control" id="password" placeholder="password" required="true" aria-label="password" aria-describedby="basic-addon1" /> --}}
+                                <input type="password"  class="input form-control" name="password" id="password"  placeholder="password" required>
                                 <div class="input-group-append">
                                   <span class="input-group-text" onclick="password_show_hide();">
                                     <i class="fas fa-eye" id="show_eye"></i>
