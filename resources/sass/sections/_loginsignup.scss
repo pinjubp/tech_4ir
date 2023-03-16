@@ -20,7 +20,7 @@
                         font-size: 1rem;
                         font-weight: 400;
                         line-height: 1.7;
-                        color: #212529;
+                        color: $secondary;
                         text-align: center;
                         white-space: nowrap;
                         background-color: $primary;
@@ -40,7 +40,8 @@
                         font-size: 1rem;
                         font-weight: 400;
                         line-height: 1.7;
-                        color: #212529;
+                        //color: #212529;
+                        color:  $secondary;
                         text-align: center;
                         white-space: nowrap;
                         background-color: $primary;

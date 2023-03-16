@@ -171,6 +171,10 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::get('/get/subcategory/{id}',[UserProductController::class ,'UserGetSubcategory'])->name('user.get.subcategory');
             Route::post('/product/store', [UserProductController::class, 'UserProductStore'])->name('user.product.store');
             Route::get('/product/detail/{id}',[UserProductController::class ,'UserProductDetail'])->name('user.product.detail');
+            Route::get('/product/list', [UserProductController::class, 'ProductList'])->name('user.product.list');
+            Route::get('/product/edit/{id}',[UserProductController::class ,'UserProductEdit'])->name('user.product.edit');
+            Route::post('/product/update/{id}',[UserProductController::class ,'UserProductUpdate'])->name('user.product.update');
+            
             
             
 

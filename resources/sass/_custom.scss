@@ -3,6 +3,11 @@ $green-light:  #d1e7dd;
 $yellow: #ffe77aff;
 
 
+$blue-dark: #032830;
+$blue-light: #94b4ba;
+$blue-cyan: #0dcaf0;
+
+
 // white and gray color 
 
 $white:    #fff;
@@ -17,9 +22,14 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black:    #000;
 
-$primary:       $green-dark;
-$primary-light:       $green-light;
-$secondary:     $yellow;
+//$primary:       $green-dark;
+$primary-light:       $blue-light;
+//$secondary:     $yellow;
+
+
+$primary:       $blue-dark;
+$secondary: $blue-cyan;
+
 
 //accordion overrides
 

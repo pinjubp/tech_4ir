@@ -93,6 +93,89 @@ class UserProductController extends Controller
         
         return view('pages.product.detail_userproduct',$data);
     
+       }//end function
+
+       public function ProductList(){
+         $product =   Product::where('user_id',Auth::user()->id )->get();
+         
+        // dd($product->toArray());
+
+         return view('pages.product.list_userproduct',compact('product'));
+        
+
+       }//end function
+
+       public function UserProductEdit($id){
+          
+        $data['product'] =Product::find($id);    
+        $data['category'] = Category::all();   
+        $data['subcategory']  = SubCategory::where('category_id',$data['product']->category_id)->get();
+        $data['brand'] = Brand::all();
+        //dd($data['product']->toArray()); 
+        return view('pages.product.edit_userproduct',$data);
+       }//end function
+
+       public function UserProductUpdate(Request $request,$id){
+        $data =Product::find($id);
+
+        $data->product_name = $request->product_name;
+        $data->product_code = $request->product_code;
+    
+        $data->category_id = $request->category_id;
+        $data->subcategory_id = $request->subcategory_id;
+        $data->brand_id = $request->brand_id;
+        
+        $data->selling_price = $request->selling_price;
+    
+        $data->product_details = $request->product_details;
+        $data->video_link = $request->video_link;
+        $data->main_slider = $request->main_slider;
+      
+    
+        $data->mid_slider = $request->mid_slider;
+       
+        $image_one = $request->image_one;
+        $image_two = $request->image_two;
+        $image_three = $request->image_three;
+    
+    
+        
+          //image=====imageone=======================
+          if($image_one){
+            if(file_exists($request->image_one)){
+                 @unlink($data->image_one);
+            }
+            $image_one_name = hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
+             Image::make($image_one)->resize(500,500)->save('public/media/product/'.$image_one_name);
+             $data->image_one = 'public/media/product/'.$image_one_name;
+        }
+        //image=====imagetwo=======================
+    
+        if($image_two){
+            if(file_exists($request->image_two)){
+                 @unlink($data->image_two);
+            }
+            $image_two_name = hexdec(uniqid()).'.'.$image_two->getClientOriginalExtension();
+            Image::make($image_two)->resize(500,500)->save('public/media/product/'.$image_two_name);
+            $data->image_two = 'public/media/product/'.$image_two_name;
+        }
+    
+        //image=====imagethree=======================
+    
+        if($image_three){
+            if(file_exists($request->image_three)){
+                 @unlink($data->image_three);
+            }
+    
+            $image_three_name = hexdec(uniqid()).'.'.$image_three->getClientOriginalExtension();
+            Image::make($image_three)->resize(500,500)->save('public/media/product/'.$image_three_name);
+            $data->image_three = 'public/media/product/'.$image_three_name;
+        }
+            //dd($data->toArray());
+            $data->save();
+    
+       
+            return Redirect()->route('user.product.list')->with('success', 'Product inserted successfully');
        }
 
 }

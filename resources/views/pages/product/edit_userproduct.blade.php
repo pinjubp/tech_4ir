@@ -13,7 +13,7 @@
                         <a class="nav-link " href="{{ route('user.product.list') }}">Product List</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active"  href="{{ route('user.product.upload')  }}">Upload Product</a>
+                        <a class="nav-link"  href="{{ route('user.product.upload')  }}">Upload Product</a>
                     </li>                            
                 </ul>
             </div>
@@ -64,9 +64,9 @@
         <div class="col-md-8">
             <div class="card p-3">
                 <div class="card-body">
-                    <h5 class="card-title mb-5">Please Enter Your Product Information</h5>
+                    <h5 class="card-title mb-5">Please Edit your Product Information</h5>
 
-                    <form method="post" action="{{ route('user.product.store') }}" class="form-horizontal form-element col-12" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('user.product.update',$product->id) }}" class="form-horizontal form-element col-12" enctype="multipart/form-data">
                      @csrf
 
                         <div class="row form-group pt-1 pb-1">
@@ -74,8 +74,11 @@
                             <div class="col-md-8">
                                 <select class="form-control select2" data-placeholder="Choose Category" name="category_id"  >
                                     <option label="Choose Category"></option>
-                                    @foreach ($category as $row )
-                                    <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                                    @foreach ($category as $value )
+                                    <option value="{{ $value->id  }}"
+                                        {{ $value->id == $product->category_id ? 'selected':'' }}>
+                                        {{ $value->category_name  }}
+                                    </option> 
                                     @endforeach
                                 </select>
                             </div>
@@ -85,7 +88,12 @@
                             <div class="col-md-4"><label for="email">Sub Category : </label></div>
                             <div class="col-md-8">
                                 <select class="form-control select2" data-placeholder="Choose Sub Category" name="subcategory_id" >
-                                                
+                                    @foreach ($subcategory as $value )
+                                        <option value="{{ $value->id  }}"
+                                            {{ $value->id == $product->subcategory_id ? 'selected':'' }}>
+                                            {{ $value->subcategory_name   }}
+                                        </option>   
+                                    @endforeach              
                                 </select>
                             </div>
                         </div>
@@ -95,8 +103,11 @@
                             <div class="col-md-8">
                                 <select class="form-control select2" data-placeholder="Choose Brand" name="brand_id" >
                                     <option label="Choose Brand"></option>
-                                    @foreach ($brand as $row )
-                                    <option value="{{ $row->id }}">{{ $row->brand_name }}</option>
+                                    @foreach ($brand as $value )
+                                        <option value="{{ $value->id  }}"
+                                            {{ $value->id == $product->brand_id ? 'selected':'' }}>
+                                            {{ $value->brand_name  }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -105,7 +116,7 @@
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Product Name : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
-                                <input name="product_name" type="text" class="form-control" id="product_name" required>
+                                <input name="product_name" type="text" class="form-control" id="product_name" value="{{ $product->product_name }}" required>
                                 @error('product_name')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
@@ -115,7 +126,7 @@
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Product Code : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
-                                <input name="product_code" type="text" class="form-control" id="product_code" required>
+                                <input name="product_code" type="text" class="form-control" id="product_code" value="{{ $product->product_code }}" required>
                                 @error('product_code')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
@@ -125,7 +136,7 @@
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Selling Price : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
-                                <input name="selling_price" type="text" class="form-control" id="selling_price" required>
+                                <input name="selling_price" type="text" class="form-control" id="selling_price" value="{{ $product->selling_price }}" required>
                                 @error('selling_price')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
@@ -135,7 +146,7 @@
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">product Details : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
-                                <textarea id="editor1" class="form-control"   name="product_details"  placeholder="Place some text here" required></textarea>
+                                <textarea id="editor1" class="form-control"   name="product_details"  placeholder="Place some text here" required>{!! $product->product_details !!}</textarea>
                                 @error('product_details')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
@@ -145,7 +156,7 @@
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Video Link : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
-                                <input name="video_link" type="text" class="form-control" id="video_link" required>
+                                <input name="video_link" type="text" class="form-control" id="video_link" value="{{ $product->video_link }}" >
                                 @error('selling_price')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
@@ -159,7 +170,7 @@
                                 @error('selling_price')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
-                                <img  id="one" class="pt-2" style="width: 80px; height:80px;"  src="{{ url('upload/no_image.jpg')   }}" >
+                                <img  id="one" class="pt-2" style="width: 80px; height:80px;"  src="{{ !empty($product->image_one)? url($product->image_one):url('upload/no_image.jpg') }}" >
                             </div>
                         </div>
                         <!--endformgroup-->
@@ -170,7 +181,7 @@
                                 @error('selling_price')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
-                                <img  id="two" class="pt-2" style="width: 80px; height:80px;"  src="{{ url('upload/no_image.jpg')   }}" >
+                                <img  id="two" class="pt-2" style="width: 80px; height:80px;"  src="{{ !empty($product->image_two)? url($product->image_two):url('upload/no_image.jpg') }}" >
                             </div>
                         </div>
                         <!--endformgroup-->
@@ -181,7 +192,7 @@
                                 @error('selling_price')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
-                                <img  id="three" class="pt-2" style="width: 80px; height:80px;"  src="{{ url('upload/no_image.jpg')   }}" >
+                                <img  id="three" class="pt-2" style="width: 80px; height:80px;"  src="{{ !empty($product->image_three)? url($product->image_three):url('upload/no_image.jpg') }}" >
                             </div>
                         </div>
                         <!--endformgroup-->
@@ -192,12 +203,12 @@
                         <div class="col-lg-12">
                             <div class="controls">
                                 <fieldset>
-                                    <input type="checkbox" name="main_slider"  id="checkbox_2" >
+                                    <input type="checkbox" name="main_slider"  id="checkbox_2" {{ $product->main_slider== 'on' ? 'checked' : ''}} >
                                     <label for="checkbox_2">Main Slider</label>
                                 </fieldset>
                                 
                                 <fieldset>
-                                    <input type="checkbox" name="mid_slider" id="checkbox_5" >
+                                    <input type="checkbox" name="mid_slider" id="checkbox_5"  {{ $product->mid_slider== 'on' ? 'checked' : ''}} >
                                     <label for="checkbox_5">Mid Slider</label>
                                 </fieldset>
                             </div>
@@ -206,7 +217,7 @@
                         <!--endformgroup-->
 
                         <div class="row form-group pt-5 pb-1">
-                            <div class="col-md-4"> <input type="submit" class="btn btn-rounded btn-primary" value="Submit"></div>                        
+                            <div class="col-md-4"> <input type="submit" class="btn btn-rounded btn-primary" value="Update"></div>                        
                         </div>
                         <!--endformgroup-->
 
@@ -219,6 +230,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+  {{-- <script src="{{ asset('adminbackend/../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+  <script src="{{ asset('adminbackend/js/pages/editor.js') }}"></script>  --}}
   <script type="text/javascript">
     $(document).ready(function(){
    $('select[name="category_id"]').on('change',function(){

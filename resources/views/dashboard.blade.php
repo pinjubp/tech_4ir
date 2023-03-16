@@ -5,16 +5,38 @@
     
     @if(Auth::user()->status == 0 )                
    
-    <div class="alert  alert-success" role="alert">
+    {{-- <div class="alert  alert-success" role="alert">
         To upload your product information please wait for the admin approval and  please complete the profile
-    </div>  
+    </div>   --}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Please Upload Product Information
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @else
-       <a href="{{ route('user.product.upload')  }}" class="btn btn-primary mb-3">Please Upload Product Information</a>   
+       {{-- <a href="{{ route('user.product.upload')  }}" class="btn btn-primary mb-3">Please Upload Product Information</a>    --}}
+       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Please Upload Product Information
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
     @include('pages.alert')
     <div class="row">
         <div class="col-md-4">
-            <h2></h2>
+            <div class="card" id="sidenav">
+
+                <ul   class="nav flex-column nav-pills mt-2 mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('dashboard') }}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link " href="{{ route('user.product.list') }}">Product List</a>
+                    </li>
+                    <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('user.product.upload')  }}">Upload Product</a>
+                    </li>                            
+                </ul>
+            </div>
+            <!--endsidenav-->
             <div class="card" id="Profile">
                 <img src="{{ (!empty(Auth::user()->image ))?
                     url('upload/user_images/'.Auth::user()->image):url('upload/no_image.jpg')   }}" class=" mx-auto d-block rounded-circle" alt="...">
@@ -58,7 +80,7 @@
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Profile</button>                                    
+                        <button class="nav-link active " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Profile</button>                                    
                         <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">@if(Auth::user()->status == 0 ) Complete Profile @else edit Profile  @endif</button>                                        
                         <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Change Password</button>                    
                     
@@ -258,7 +280,7 @@
                             </div>
     
                             <div class="row form-group pt-1 pb-1">
-                                <div class="col-md-4"><button type="submit" class="btn btn-rounded btn-success">Submit</button></div>                                
+                                <div class="col-md-4"><button type="submit" class="btn btn-rounded btn-primary">Submit</button></div>                                
                             </div>                                
                         </div><!--container--> 
                     </form>   
@@ -340,7 +362,7 @@
                             
 
                             <div class="row form-group pt-1 pb-1">
-                                <div class="col-md-4"><button type="submit" class="btn btn-rounded btn-success">Submit</button></div>                                
+                                <div class="col-md-4"><button type="submit" class="btn btn-rounded btn-primary">Submit</button></div>                                
                             </div>
                           </form>                        
                     </div>    

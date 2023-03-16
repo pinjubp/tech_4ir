@@ -5,7 +5,6 @@
             <div class="col-sm-6">
                 <ul class="nav">
                     
-
                     @auth
                             
                             <li class="nav-item"><a href="{{ route('signout') }}" class="btn btn-primary ">logout</a></li> 
@@ -13,7 +12,7 @@
                                 <a href="{{ route('dashboard') }}">
                                     <img  src="{{ (!empty(Auth::user()->image ))?
                                     url('upload/user_images/'.Auth::user()->image):url('upload/no_image.jpg')   }}" 
-                                    alt="Profile" class="rounded-circle border-primary  mx-auto d-block " width="40" height="40" >
+                                    alt="Profile" class="rounded-circle border-success  mx-auto d-block " width="40" height="40" >
                                 </a>
                             </li>
                         @else  
