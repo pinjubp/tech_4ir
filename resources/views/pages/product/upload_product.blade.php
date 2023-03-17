@@ -145,7 +145,7 @@
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Video Link : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
-                                <input name="video_link" type="text" class="form-control" id="video_link" required>
+                                <input name="video_link" type="text" class="form-control" id="video_link" >
                                 @error('selling_price')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror

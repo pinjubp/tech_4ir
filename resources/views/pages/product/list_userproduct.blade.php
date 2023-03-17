@@ -62,7 +62,7 @@
         </div>
          <!--col-md-4-->   
         <div class="col-md-8">
-            <div class="card p-3">
+            <div class="card p-1">
                 <div class="card-body">
                     <h5 class="card-title mb-5">Product list</h5>
                     <div class="box-body">
@@ -71,11 +71,12 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th width="35%">Product Name</th>
+                                    <th width="30%">Product Name</th>
                                     <th>Product Code</th>
                                     <th>Selling Price</th>
                                     <th>Image</th>
                                     <th>Action</th>
+                                    <th>status</th>
  
                                 </tr>
                             </thead>
@@ -85,7 +86,7 @@
                                      <td>{{ $key+1 }}</td>
                                      <td>{{ $data->product_name }}</td>
                                      <td>{{ $data->product_code }}</td>
-                                     <td>{{ $data->selling_price }}</td>
+                                     <td>TK.{{ $data->selling_price }}</td>
                                      <td>
                                          
                                          <img src="{{ !empty($data->image_one)? url($data->image_one):url('upload/no_image.jpg') }}" style="height:50px; width:80px;" alt="">
@@ -99,6 +100,13 @@
                                              
                                          
                                      </td>
+                                     <td>
+                                        @if ($data->status == 1)
+                                        <span class="badge text-bg-secondary">Approved</span>
+                                        @else
+                                        <span class="badge text-bg-primary">Not Approved</span>
+                                        @endif
+                                     </td>
  
                                  </tr>
  
@@ -110,21 +118,25 @@
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Product Name</th>
+                                    <th width="30%">Product Name</th>
                                     <th>Product Code</th>
                                     <th>Selling Price</th>
                                     <th>Image</th>
                                     <th>Action</th>
+                                    <th>status</th>
                                 </tr>
                             </tfoot>
                           </table>
                         </div>
+                        
                     </div>
                     <!-- /.box-body -->
+                    {!! $product->links()  !!} 
                     
                 </div>    
             </div>
         </div>
+        
     </div>
 </div>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>

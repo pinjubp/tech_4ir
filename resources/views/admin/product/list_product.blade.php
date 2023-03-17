@@ -62,7 +62,7 @@
                            <tfoot>
                                <tr>
                                    <th>ID</th>
-                                   <th>Product Name</th>
+                                   <th >Product Name</th>
                                    <th>Product product_code</th>
                                    <th>Product Selling Price</th>
                                    <th>Product Image</th>

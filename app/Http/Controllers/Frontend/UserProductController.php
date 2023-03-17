@@ -72,15 +72,17 @@ class UserProductController extends Controller
         $image_three = $request->image_three;
 
 
-        if($image_one && $image_two && $image_three){
+        if($image_one){
             $image_one_name = hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
              Image::make($image_one)->resize(500,500)->save('public/media/product/'.$image_one_name);
              $data->image_one = 'public/media/product/'.$image_one_name;
-
+        }
+        if($image_two){
              $image_two_name = hexdec(uniqid()).'.'.$image_two->getClientOriginalExtension();
              Image::make($image_two)->resize(500,500)->save('public/media/product/'.$image_two_name);
              $data->image_two = 'public/media/product/'.$image_two_name;
-
+        }
+        if($image_three){    
              $image_three_name = hexdec(uniqid()).'.'.$image_three->getClientOriginalExtension();
              Image::make($image_three)->resize(500,500)->save('public/media/product/'.$image_three_name);
              $data->image_three = 'public/media/product/'.$image_three_name;
@@ -112,7 +114,8 @@ class UserProductController extends Controller
 
        public function ProductList(){
         
-            $product =   Product::where('user_id',Auth::user()->id )->get();
+            //$product =   Product::where('user_id',Auth::user()->id )->paginate(5);
+            $product =   Product::where('user_id',Auth::user()->id )->latest()->paginate(5);
             
             // dd($product->toArray());
 

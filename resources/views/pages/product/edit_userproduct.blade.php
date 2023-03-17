@@ -312,4 +312,6 @@
       }
     }
   </script>
+  <script src="{{ asset('adminbackend/../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+  <script src="{{ asset('adminbackend/js/pages/editor.js') }}"></script>
 @endsection
