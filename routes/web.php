@@ -168,6 +168,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
             //==================product==============================
             Route::get('/product/upload', [UserProductController::class, 'ProductUpload'])->name('user.product.upload');
+            //Route::post('/get/other', [UserProductController::class, 'GetOther'])->name('user.get.other');
+            
             Route::get('/get/subcategory/{id}',[UserProductController::class ,'UserGetSubcategory'])->name('user.get.subcategory');
             Route::post('/product/store', [UserProductController::class, 'UserProductStore'])->name('user.product.store');
             Route::get('/product/detail/{id}',[UserProductController::class ,'UserProductDetail'])->name('user.product.detail');

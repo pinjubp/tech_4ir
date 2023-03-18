@@ -41,8 +41,22 @@ class UserProductController extends Controller
         return json_encode($subcategory);
     }//end function
 
+    
+
     public function UserProductStore(Request $request){
-        //dd($request->toArray());
+        dd($request->toArray());
+
+        if($request->category_name){
+            $validateData  = $request->validate([
+                'category_name'  => 'required|unique:categories|max:255',
+            ]);
+            $category = new Category();
+            $category->category_name =  $request->category_name;
+
+            $category->save();
+
+            //dd($category->id);
+        }
 
         
 
@@ -51,7 +65,7 @@ class UserProductController extends Controller
         $data->product_name = $request->product_name;
         $data->product_code = $request->product_code;
 
-        $data->category_id = $request->category_id;
+        $data->category_id = $category->id;
         $data->subcategory_id = $request->subcategory_id;
         $data->brand_id = $request->brand_id;
        

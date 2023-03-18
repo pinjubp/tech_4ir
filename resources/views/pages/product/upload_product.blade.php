@@ -77,7 +77,17 @@
                                     @foreach ($category as $row )
                                     <option value="{{ $row->id }}">{{ $row->category_name }}</option>
                                     @endforeach
-                                </select>
+                                </select>                                
+                            </div>
+                        </div>
+                        <!--endformgroup-->
+                        <div id="other" class="row form-group pt-1 pb-1 d-none">
+                            <div class="col-md-4"><label for="email">New Category Name : <span class="tx-danger">*</span></label></div>
+                            <div class="col-md-8">
+                                <input  type="text" class="form-control" name="category_name" id="category_name" required>
+                                @error('category_name')   
+                                    <span class="text-danger">{{ $message }}</span>    
+                                @enderror
                             </div>
                         </div>
                         <!--endformgroup-->
@@ -98,9 +108,28 @@
                                     @foreach ($brand as $row )
                                     <option value="{{ $row->id }}">{{ $row->brand_name }}</option>
                                     @endforeach
-                                </select>
+                                </select>                                
                             </div>
                         </div>
+                        {{-- <div id="newbrand" class="d-none">
+                            <div  class="row form-group pt-1 pb-1 ">
+                                <div class="col-md-4"><label for="email">New Brand Name : <span class="tx-danger">*</span></label></div>
+                                <div class="col-md-8">
+                                    <input  type="text" class="form-control" name="brand_name" id="brand_name" >
+                                    @error('brand_name')   
+                                        <span class="text-danger">{{ $message }}</span>    
+                                    @enderror
+                                </div>
+                            </div>    
+                            <div  class="row form-group pt-1 pb-1 ">    
+                                <div class="col-md-4"><label for="email">Brand Image : <span class="tx-danger">*</span></label></div>
+                                <div class="col-md-8">
+                                    <input type="file"  id="file4"  onchange="readURL4(this);"  name="brand_image" class="form-control" >
+                                    
+                                    <img  id="brand_image" class="pt-2" style="width: 80px; height:80px;"  src="{{ url('upload/no_image.jpg')   }}" >
+                                </div>
+                            </div>
+                        </div> --}}
                         <!--endformgroup-->
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Product Name : <span class="tx-danger">*</span></label></div>
@@ -115,7 +144,7 @@
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Product Code : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
-                                <input name="product_code" type="text" class="form-control" id="product_code" required>
+                                <input name="product_code" type="text" class="form-control" id="product_code" >
                                 @error('product_code')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
@@ -125,7 +154,7 @@
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Selling Price : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
-                                <input name="selling_price" type="text" class="form-control" id="selling_price" required>
+                                <input name="selling_price" type="text" class="form-control" id="selling_price" >
                                 @error('selling_price')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
@@ -135,7 +164,7 @@
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">product Details : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
-                                <textarea id="editor1" class="form-control"   name="product_details"  placeholder="Place some text here" required></textarea>
+                                <textarea id="editor1" class="form-control"   name="product_details"  placeholder="Place some text here" ></textarea>
                                 @error('product_details')   
                                     <span class="text-danger">{{ $message }}</span>    
                                 @enderror
@@ -156,9 +185,7 @@
                             <div class="col-md-4"><label for="email">Image One (Main Thumbnail): <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
                                 <input type="file"  id="file1"  onchange="readURL1(this);"  name="image_one" class="form-control" >
-                                @error('selling_price')   
-                                    <span class="text-danger">{{ $message }}</span>    
-                                @enderror
+                                
                                 <img  id="one" class="pt-2" style="width: 80px; height:80px;"  src="{{ url('upload/no_image.jpg')   }}" >
                             </div>
                         </div>
@@ -167,9 +194,7 @@
                             <div class="col-md-4"><label for="email">Image Two (Main Thumbnail): <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
                                 <input type="file"  id="file2"  onchange="readURL2(this);"  name="image_two" class="form-control" >
-                                @error('selling_price')   
-                                    <span class="text-danger">{{ $message }}</span>    
-                                @enderror
+                               
                                 <img  id="two" class="pt-2" style="width: 80px; height:80px;"  src="{{ url('upload/no_image.jpg')   }}" >
                             </div>
                         </div>
@@ -178,9 +203,7 @@
                             <div class="col-md-4"><label for="email">Image Two (Main Thumbnail): <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
                                 <input type="file"  id="file3"  onchange="readURL3(this);"  name="image_three" class="form-control" >
-                                @error('selling_price')   
-                                    <span class="text-danger">{{ $message }}</span>    
-                                @enderror
+                               
                                 <img  id="three" class="pt-2" style="width: 80px; height:80px;"  src="{{ url('upload/no_image.jpg')   }}" >
                             </div>
                         </div>
@@ -216,9 +239,10 @@
         </div>
     </div>
 </div>   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+  
   
   <script type="text/javascript">
     $(document).ready(function(){
@@ -227,17 +251,25 @@
         var category_id = $(this).val();
         var url = "{{ route('user.get.subcategory', ":id") }}";
         url = url.replace(':id', category_id);
+
+
+         var option_value =   $(this).find(":selected").text();
+
+        if(option_value == 'other'){
+            
+            $('#other').removeClass('d-none');
+        }
         
-        //alert(url);
+        //alert(category_id);
         if (category_id) {
 
           $.ajax({
-            //url: "{{ url('/user/get/subcategory/') }}/"+category_id, 
-            url: url,
+            //url: "{{ url('product/get/subcategory/') }}/"+category_id,   
+            url : url,         
             type:"GET",
             dataType:"json",
             success:function(data) {
-           
+            
             var d =$('select[name="subcategory_id"]').empty();
             $.each(data, function(key, value){
 
@@ -252,10 +284,26 @@
         }
 
           });
+
+     
     });
 
-  </script> 
-  <script type="text/javascript">
+        
+  </script> --}}
+  {{-- <script type="text/javascript">
+    $(document).ready(function(){
+        $('select[name="brand_id"]').on('change',function(){
+
+            var option_value =   $(this).find(":selected").text();
+
+             if(option_value == 'OTHER'){
+            
+                $('#newbrand').removeClass('d-none');
+            }
+        });
+    });
+</script> --}}
+  {{-- <script type="text/javascript">
     function readURL1(input){
       if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -296,7 +344,21 @@
         reader.readAsDataURL(input.files[0]);
       }
     }
-  </script>
-  <script src="{{ asset('adminbackend/../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
-  <script src="{{ asset('adminbackend/js/pages/editor.js') }}"></script>
+  </script> --}}
+  {{-- <script type="text/javascript">
+    function readURL4(input){
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#brand_image')
+          .attr('src', e.target.result)
+          .width(80)
+          .height(80);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  </script> --}}
+  {{-- <script src="{{ asset('adminbackend/../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+  <script src="{{ asset('adminbackend/js/pages/editor.js') }}"></script> --}}
 @endsection
