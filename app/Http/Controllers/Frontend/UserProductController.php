@@ -29,7 +29,7 @@ class UserProductController extends Controller
             $data['category'] = Category::all();
             $data['subcategory'] = SubCategory::all();
             $data['brand'] = Brand::all();
-            return view('pages.product.upload_product',$data);
+            return view('pages.product.store_userproduct',$data);
         
     }//end function
 
@@ -44,7 +44,7 @@ class UserProductController extends Controller
     
 
     public function UserProductStore(Request $request){
-        dd($request->toArray());
+        //dd($request->toArray());
 
         if($request->category_name){
             $validateData  = $request->validate([
@@ -58,6 +58,31 @@ class UserProductController extends Controller
             //dd($category->id);
         }
 
+        if($request->brand_name){
+
+            $validateData = $request->validate([
+                'brand_name' => 'required|unique:brands|max:255',
+            ]);
+
+            $brand = new Brand();
+            $brand->brand_name = strtoupper($request->brand_name);
+            
+            $image = $request->file('brand_image');
+    
+            if($request->file('brand_image')){
+                $files = $request->file('brand_image');
+               // @unlink(public_path('upload/band_images/'.$data->image));
+                $destinationPath = public_path('upload/brand_images/');
+                $fileName = date('YmdHis').$files->getClientOriginalExtension();
+                $files->move($destinationPath,$fileName);
+                $brand->brand_image = $fileName;
+        
+            }
+            //dd($brand->toArray());
+            
+            $brand->save();
+        }//end brand name
+
         
 
         $data = new Product();
@@ -65,9 +90,17 @@ class UserProductController extends Controller
         $data->product_name = $request->product_name;
         $data->product_code = $request->product_code;
 
-        $data->category_id = $category->id;
+        if($request->category_name){
+            $data->category_id = $category->id;
+        }else{
+            $data->category_id = $request->category_id;
+         }
         $data->subcategory_id = $request->subcategory_id;
-        $data->brand_id = $request->brand_id;
+        if($request->brand_name){
+            $data->brand_id = $brand->id;
+        }else{
+            $data->brand_id = $request->brand_id;
+        }
        
         $data->user_id = Auth::user()->id;
 
@@ -151,23 +184,71 @@ class UserProductController extends Controller
        }//end function
 
        public function UserProductUpdate(Request $request,$id){
+
+        //dd($request->toArray());
+
+        if($request->category_name){
+            $validateData  = $request->validate([
+                'category_name'  => 'required|unique:categories|max:255',
+            ]);
+            $category = new Category();
+            $category->category_name =  $request->category_name;
+
+            $category->save();
+
+            //dd($category->id);
+        }
+
+        if($request->brand_name){
+
+            $validateData = $request->validate([
+                'brand_name' => 'required|unique:brands|max:255',
+            ]);
+
+            $brand = new Brand();
+            $brand->brand_name = strtoupper($request->brand_name);
+
+            
+            $image = $request->file('brand_image');
+    
+            if($request->file('brand_image')){
+                $files = $request->file('brand_image');
+                @unlink(public_path('upload/band_images/'.$brand->image));
+                $destinationPath = public_path('upload/brand_images/');
+                $fileName = date('YmdHis').$files->getClientOriginalExtension();
+                $files->move($destinationPath,$fileName);
+                $brand->brand_image = $fileName;
+        
+            }
+            //dd($brand->toArray());
+            
+            $brand->save();
+        }//end brand name
        
         $data =Product::find($id);
 
         $data->product_name = $request->product_name;
         $data->product_code = $request->product_code;
-    
-        $data->category_id = $request->category_id;
-        $data->subcategory_id = $request->subcategory_id;
-        $data->brand_id = $request->brand_id;
         
+        if($request->category_name){
+            $data->category_id = $category->id;
+        }else{
+            $data->category_id = $request->category_id;
+         }
+
+         if($request->brand_name){
+            $data->brand_id = $brand->id;
+        }else{
+            $data->brand_id = $request->brand_id;
+        }
+       
+        
+        $data->subcategory_id = $request->subcategory_id;                
         $data->selling_price = $request->selling_price;
     
         $data->product_details = $request->product_details;
         $data->video_link = $request->video_link;
-        $data->main_slider = $request->main_slider;
-      
-    
+        $data->main_slider = $request->main_slider;          
         $data->mid_slider = $request->mid_slider;
        
         $image_one = $request->image_one;

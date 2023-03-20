@@ -84,6 +84,16 @@
                             </div>
                         </div>
                         <!--endformgroup-->
+                        <div id="other" class="row form-group pt-1 pb-1 d-none">
+                            <div class="col-md-4"><label for="email">New Category Name : <span class="tx-danger">*</span></label></div>
+                            <div class="col-md-8">
+                                <input  type="text" class="form-control" name="category_name" id="category_name" >
+                                @error('category_name')   
+                                    <span class="text-danger">{{ $message }}</span>    
+                                @enderror
+                            </div>
+                        </div>
+                        <!--endformgroup-->
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Sub Category : </label></div>
                             <div class="col-md-8">
@@ -113,6 +123,26 @@
                             </div>
                         </div>
                         <!--endformgroup-->
+                        <div id="newbrand" class="d-none">
+                            <div  class="row form-group pt-1 pb-1 ">
+                                <div class="col-md-4"><label for="email">New Brand Name : <span class="tx-danger">*</span></label></div>
+                                <div class="col-md-8">
+                                    <input  type="text" class="form-control" name="brand_name" id="brand_name" >
+                                    @error('brand_name')   
+                                        <span class="text-danger">{{ $message }}</span>    
+                                    @enderror
+                                </div>
+                            </div>    
+                            <div  class="row form-group pt-1 pb-1 ">    
+                                <div class="col-md-4"><label for="email">Brand Image : <span class="tx-danger">*</span></label></div>
+                                <div class="col-md-8">
+                                    <input type="file"  id="file4"  onchange="readURL4(this);"  name="brand_image" class="form-control" >
+                                    
+                                    <img  id="brand_image" class="pt-2" style="width: 80px; height:80px;"  src="{{ url('upload/no_image.jpg')   }}" >
+                                </div>
+                            </div>
+                        </div>
+                         <!--endformgroup-->
                         <div class="row form-group pt-1 pb-1">
                             <div class="col-md-4"><label for="email">Product Name : <span class="tx-danger">*</span></label></div>
                             <div class="col-md-8">
@@ -233,9 +263,65 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
-  {{-- <script src="{{ asset('adminbackend/../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
-  <script src="{{ asset('adminbackend/js/pages/editor.js') }}"></script>  --}}
+
   <script type="text/javascript">
+    $(document).ready(function(){
+        $('select[name="category_id"]').on('change',function(){
+    
+            var category_id = $(this).val();
+            var url = "{{ route('user.get.subcategory', ":id") }}";
+            url = url.replace(':id', category_id);
+            //alert(category_id);
+                var option_value =   $(this).find(":selected").text();
+
+                //alert(option_value);
+    
+            if(category_id == 10){
+
+                //alert(option_value);
+                
+                $('#other').removeClass('d-none');
+            }
+        
+        //alert(category_id);
+            if (category_id) {
+    
+                $.ajax({                    
+                    url : url,         
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                    
+                    var d =$('select[name="subcategory_id"]').empty();
+                    $('select[name="subcategory_id"]').append('<option label="choose subcategory"></option>');
+                        $.each(data, function(key, value){
+    
+                            $('select[name="subcategory_id"]').append('<option value="'+ value.id + '">' + value.subcategory_name + '</option>');
+    
+                        });
+                    },
+                });
+    
+            }else{
+                alert('danger');
+            }
+    
+        });//end select
+    
+        $('select[name="brand_id"]').on('change',function(){
+            var brand_id = $(this).val();
+            //var option_value =   $(this).find(":selected").text();
+
+            if( brand_id == 18 ){
+    
+                $('#newbrand').removeClass('d-none');
+            }
+        });//end select
+    
+         
+    }); //end document       
+    </script>
+  {{-- <script type="text/javascript">
     $(document).ready(function(){
    $('select[name="category_id"]').on('change',function(){
 
@@ -269,7 +355,7 @@
           });
     });
 
-  </script> 
+  </script>  --}}
   <script type="text/javascript">
     function readURL1(input){
       if (input.files && input.files[0]) {
@@ -304,6 +390,20 @@
         var reader = new FileReader();
         reader.onload = function(e) {
           $('#three')
+          .attr('src', e.target.result)
+          .width(80)
+          .height(80);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    function readURL4(input){
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#brand_image')
           .attr('src', e.target.result)
           .width(80)
           .height(80);

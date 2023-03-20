@@ -83,7 +83,9 @@ class CategoryController extends Controller
         //database
         //DB::table('categories')->where('id',$id)->delete();
         //Eloquent
-        Category::find($id)->delete();
+        $category = Category::find($id);
+        
+        $category->delete();
 
            return Redirect()->back()->with('error','Category deleted successfully'); 
 
