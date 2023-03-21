@@ -4,9 +4,10 @@
 
         @php
             $product = DB::table('products')->where('category_id',$data->id)->get();
+            //dd($product->toArray());
         @endphp 
    
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5 ">
         <div class="row">
             <div class="col-lg-6">
                 <div class="section-heading">
@@ -25,11 +26,11 @@
                    
                         @foreach ($product as $item)
                         <div class="item box">
-                            <a href="">
+                            <a href="{{ route('item.detail',$item->id)  }}">
                             {{-- <img class="image" src="{{ asset('') }}" alt="" > --}}
                             <img class="image" src="{{ !empty($item->image_one)? url($item->image_one):url('upload/no_image.jpg') }}"  alt="">
                             </a>
-                            <a href="" class="btn mt-2 btn-secondary">Details</a>
+                            <a href="{{ route('item.detail',$item->id)  }}" class="btn mt-2 btn-secondary">Details</a>
                         </div> 
                         <!--enditem--> 
                         

@@ -27,7 +27,7 @@ class HomeController extends Controller
 
         //$category = DB::select("select * from categories inner join products on products.category_id = categories.id where products.category_id is not null group by products.category_id");
 
-        //dd($category);
+        //dd($category->toArray());
 
         return view('pages.index',compact('category'));
     }

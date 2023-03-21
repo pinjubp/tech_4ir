@@ -12,11 +12,15 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/owlcarousel/assets/owl.theme.default.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/xzoom.css') }}" media="all" /> --}}
       
-
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/dist/xzoom.css') }}" media="all" /> 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
-    
+<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+
     
 </head>
 <body>

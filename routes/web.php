@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\DetailController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\UserProductController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -152,6 +153,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/item/detail/{id}',[DetailController::class ,'ItemDetail'])->name('item.detail');
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
 
@@ -182,6 +184,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::get('/product/description/edit/{id}', [UserProductController::class, 'UserProductDescriptionEdit'])->name('user.product.description.edit');
             Route::get('/product/description/delete/{id}', [UserProductController::class, 'UserProductDescriptionDelete'])->name('user.product.description.delete');
 
+
+            
             
                         
             
