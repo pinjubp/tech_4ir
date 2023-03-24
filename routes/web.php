@@ -152,8 +152,21 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 //     return view('welcome');
 // });
 
+//===============public==part=====================================================================
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/item/detail/{id}',[DetailController::class ,'ItemDetail'])->name('item.detail');
+Route::get('/compare/product/{id}',[DetailController::class ,'CompareProduct'])->name('compare.product');
+Route::get('/compare/search/product',[DetailController::class ,'CompareSearchProduct'])->name('compare.search.product');
+Route::get('/compare/find2/product/{id}',[DetailController::class ,'CompareFind2Product'])->name('compare.find2.product');
+
+
+
+
+
+
+/*====================vendor==user==============part================================================*/
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
 

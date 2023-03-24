@@ -42,7 +42,7 @@
                     <li><h5><span >Vendor phone :</span>{{ $user->phone   }}</h5></li>
                     <li><h5><span>Address</span> <address>{{ $user->address   }}</address>  </h5></li>
                     <li><p>{{ $user->about   }}</p></li>
-                    <li><a href="" class="btn  btn-secondary">Compare with similar product</a></li>
+                    <li><a href="{{ route('compare.product',$detail->id) }}" class="btn  btn-secondary">Compare with similar product</a></li>
                 </ul>
 
                 

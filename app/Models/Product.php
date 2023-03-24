@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Brand;
 use App\Models\User;
+use App\Models\Description;
 
 
 class Product extends Model
@@ -16,7 +17,7 @@ class Product extends Model
 
     public function users(){
 
-        return $this->belongsTo(User::class,'category_id','id');
+        return $this->belongsTo(User::class,'user_id','id');
 
     }
     public function categories(){
@@ -32,6 +33,12 @@ class Product extends Model
     public function subcategorys(){
 
         return $this->belongsTo(SubCategory::class,'subcategory_id','id');
+
+    }
+
+    public function description(){
+
+        return $this->belongsTo(Description::class,'product_id','id');
 
     }
 }
