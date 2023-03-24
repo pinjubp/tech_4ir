@@ -125,10 +125,9 @@ class DetailController extends Controller
                             'image_one' => $image_one ,
                             'image_two' => $image_two  ,
                             'image_three' => $image_three ,                             
-                            'description' => $description
+                            'description' => $description,
                             ]);
 
-        //return response()->json($response);
-
+       
     }
 }
