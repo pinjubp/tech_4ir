@@ -1,0 +1,54 @@
+@import '../custom';
+
+#category{
+
+    .box{
+        width: 193px;
+        min-height: 320px;
+        padding: 10px; 
+        float: left;
+        margin: 10px;      
+        border: 3px solid $primary;
+
+        h4{
+            font-size: 13px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            a{
+                text-decoration: none;
+            }
+
+        }
+
+        img{
+            width: 165px;
+            height: 165px;
+        }
+    }
+
+    .cat{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+
+        li{
+            list-style: none;
+            
+            a{
+            
+                color: $primary;
+                text-decoration: none;
+             
+                &:hover{
+                    color: $secondary;
+                }
+
+                img{
+                   margin-right: 10px; 
+                }
+            }
+        }
+    }
+
+}

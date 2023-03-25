@@ -76,6 +76,8 @@ class DetailController extends Controller
          return response()->json($response);
     }//end function
 
+    
+
     public function CompareFind2Product($id){
         //dd($id);
         //$response = Product::with('description')->where('id',$id)->first();
@@ -109,17 +111,6 @@ class DetailController extends Controller
             $image_two = url(''.'upload/no_image.jpg' );
         }
        
-        //$image_two = url('/'.$product->image_two);
-       // $image_three = url('/'.$product->image_three);
-
-        // $response[] = array(
-        //      'product_name' => $product->product_name,
-        //      'image_one' =>   url('/'.$product->image_one), 
-        //      'image_two' =>   url('/'.$product->image_two), 
-        //      'image_three' =>   url('/'.$product->image_three), 
-        //     'description' => $description,
-        // );
-
         return response()->json([
                             'product_name' => $product->product_name,
                             'image_one' => $image_one ,
@@ -129,5 +120,7 @@ class DetailController extends Controller
                             ]);
 
        
-    }
+    }//end function
+
+    
 }

@@ -5,6 +5,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\DetailController;
+use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\UserProductController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -160,6 +161,14 @@ Route::get('/item/detail/{id}',[DetailController::class ,'ItemDetail'])->name('i
 Route::get('/compare/product/{id}',[DetailController::class ,'CompareProduct'])->name('compare.product');
 Route::get('/compare/search/product',[DetailController::class ,'CompareSearchProduct'])->name('compare.search.product');
 Route::get('/compare/find2/product/{id}',[DetailController::class ,'CompareFind2Product'])->name('compare.find2.product');
+
+
+Route::get('/search/specific/product',[SearchController::class ,'SearchSpecificProduct'])->name('search.specific.product');
+Route::get('/search/category/product/{id}',[SearchController::class ,'SearchCategoryProduct'])->name('search.category.product');
+Route::get('/search/brand/product/{id}',[SearchController::class ,'SearchBrandProduct'])->name('search.brand.product');
+
+
+
 
 
 

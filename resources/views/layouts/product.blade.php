@@ -27,9 +27,10 @@
                         @foreach ($product as $item)
                         <div class="item box">
                             <a href="{{ route('item.detail',$item->id)  }}">
-                            {{-- <img class="image" src="{{ asset('') }}" alt="" > --}}
+                            
                             <img class="image" src="{{ !empty($item->image_one)? url($item->image_one):url('upload/no_image.jpg') }}"  alt="">
                             </a>
+                            <h4><a href="{{ route('item.detail',$item->id)  }}">{{ $item->product_name  }}</a></h4>
                             <a href="{{ route('item.detail',$item->id)  }}" class="btn mt-2 btn-secondary">Details</a>
                         </div> 
                         <!--enditem--> 

@@ -30,14 +30,29 @@
         }
     }
 
+   
+
     .box{
         width: 193px;
-        height: 250px;
+        min-height: 320px;
+        padding: 10px; 
+        float: left;
+        margin: 10px;      
         border: 3px solid $primary;
-    
+
+        h4{
+            font-size: 13px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            a{
+                text-decoration: none;
+            }
+
+        }
+
         img{
-            width: 185px;
-            height: 185px;
+            width: 165px;
+            height: 165px;
         }
     }
     
