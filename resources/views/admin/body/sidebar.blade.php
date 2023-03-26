@@ -4,11 +4,11 @@
 		
         <div class="user-profile">
 			<div class="ulogo">
-				 <a href="index.html">
+				 <a href="{{ route('admin.dashboard') }}">
 				  <!-- logo for regular state and mobile devices -->
 					 <div class="d-flex align-items-center justify-content-center">					 	
-						  <img src="{{ asset('adminbackend../images/logo-dark.png') }}" alt="">
-						  <h3><b>Sunny</b> Admin</h3>
+						  <img src="{{ asset('adminbackend../images/logo.png') }}" alt="">
+						  <h3><b>NAVA</b> Admin</h3>
 					 </div>
 				</a>
 			</div>
@@ -126,21 +126,7 @@
            
           </ul>
         </li> 
-        <li class="treeview">
-          <a href="#">
-            <i class="fas fa-list-ol" style="font-size: 17px"></i>
-            
-            <span>Spacifications Value</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="ti-more"></i>Add Product Spacifications Value</a></li>
-            <li><a href="#"><i class="ti-more"></i>Product Spacifications Value</a></li>
-           
-          </ul>
-        </li>
+        
         <li class="treeview">
           <a href="#">
             <i data-feather="grid"></i>
@@ -157,74 +143,22 @@
            
           </ul>
         </li>
+        
+        
+       
         <li class="treeview">
           <a href="#">
-            <i data-feather="briefcase"></i>
-            <span>Portfolio</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="ti-more"></i>Create Portfolio</a></li> 
-            <li><a href="#"><i class="ti-more"></i>List Portfolio</a></li>                               
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i data-feather="message-square"></i>
-            <span>Testimonial</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="ti-more"></i>Create Testimonial</a></li>
-            <li><a href="#"><i class="ti-more"></i>Testimonial  List</a></li>                        
-          </ul>
-        </li>	
-        <li class="treeview">
-          <a href="#">
-            <i data-feather="help-circle"></i>
-            <span>FAQ</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="ti-more"></i>Create FAQ</a></li>
-            <li><a href="#"><i class="ti-more"></i>FAQ  List</a></li>                        
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i data-feather="inbox"></i>
+            <i data-feather="mail"></i>
             <span>Contact Message</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="ti-more"></i>Message List</a></li>
-            <li><a href="#"><i class="ti-more"></i>Create Contact Address</a></li> 
-            <li><a href="#"><i class="ti-more"></i>Address List</a></li>   
-            <li><a href="#"><i class="ti-more"></i>Contact Intro List</a></li>
-            <li><a href="#"><i class="ti-more"></i>Create Contact Intro</a></li>                    
+            <li><a href="#"><i class="ti-more"></i>Message List</a></li>                
           </ul>
         </li>	
         
-        <li class="treeview">
-          <a href="#">
-            <i data-feather="mail"></i>
-            <span>Newsletter</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="ti-more"></i>Newsletter List</a></li>                                  
-          </ul>
-        </li> 
         <li class="treeview">
           <a href="#">
             <i data-feather="settings"></i>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Mews\Captcha;
 
 class UserController extends Controller
 {
@@ -27,6 +28,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'password_confirmation' => 'same:password',
+            //'captcha' => 'required|captcha',
         ]);
 
        
@@ -45,6 +47,12 @@ class UserController extends Controller
         }
         
     }//end function
+
+    public function reloadCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
+        //return response()->json(['captcha'=> Captcha::img()]);
+    }
 
     public function profileComplete(){
         return view('pages.profile_complete');

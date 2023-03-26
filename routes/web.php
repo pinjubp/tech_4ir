@@ -176,6 +176,7 @@ Route::get('/search/brand/product/{id}',[SearchController::class ,'SearchBrandPr
 
 
 /*====================vendor==user==============part================================================*/
+Route::get('reload-captcha', [UserController::class, 'reloadCaptcha']);
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
 

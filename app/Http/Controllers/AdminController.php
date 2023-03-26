@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
+use App\Models\Product;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -40,8 +42,15 @@ class AdminController extends Controller
 
     public function Dashboard(){
         //dd(Auth::guard('admin')->id());
+        $data['user'] = User::all();
 
-        return view('admin.index');
+        $data['totalUser'] = count($data['user']);
+        //dd( $data['totalUser']);
+        $data['newProduct'] = Product::where('status','0')->get();
+        $data['product'] = Product::all();
+        $data['totalProduct'] = count($data['product']);
+        //dd( $data['product']->toArray());
+        return view('admin.index',$data);
     }//end function
 
 
