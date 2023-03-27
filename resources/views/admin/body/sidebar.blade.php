@@ -136,10 +136,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="ti-more"></i>Create Service</a></li>
-            <li><a href="#"><i class="ti-more"></i>Service List</a></li>
-            <li><a href="#"><i class="ti-more"></i>Create Service Into</a></li>
-            <li><a href="#"><i class="ti-more"></i>Service Into List</a></li>
+            <li><a href="{{ route('service.create') }}"><i class="ti-more"></i>Create Service</a></li>
+            <li><a href="{{ route('service.view') }}"><i class="ti-more"></i>Service List</a></li>
+            <li><a href="{{ route('service.intro.create') }}"><i class="ti-more"></i>Create Service Into</a></li>
+            <li><a href="{{ route('service.intro.view') }}"><i class="ti-more"></i>Service Into List</a></li>
            
           </ul>
         </li>
@@ -155,7 +155,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="ti-more"></i>Message List</a></li>                
+            <li><a href="{{ route('contact.view') }}"><i class="ti-more"></i>Message List</a></li>
+            <li><a href="{{ route('create.contact.address') }}"><i class="ti-more"></i>Create Contact Address</a></li> 
+            <li><a href="{{ route('contact.address.view') }}"><i class="ti-more"></i>Address List</a></li>   
+            <li><a href="{{ route('contact_intro.view') }}"><i class="ti-more"></i>Contact Intro List</a></li>
+            <li><a href="{{ route('create.contact_intro') }}"><i class="ti-more"></i>Create Contact Intro</a></li>                    
           </ul>
         </li>	
         

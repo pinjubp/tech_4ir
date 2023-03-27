@@ -17,6 +17,10 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SpecificationController;
 use App\Http\Controllers\Backend\SpecificationValueController;
+use App\Http\Controllers\Backend\ServiceController;
+use App\Http\Controllers\Backend\ContactController;
+
+
 
 
 
@@ -132,6 +136,49 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         }); //prefix=product 
 
 
+        //============service======
+
+        route::prefix('service')->group(function(){
+
+            Route::get('/create', [ServiceController::class, 'ServiceCreate'])->name('service.create');
+            Route::post('/store', [ServiceController::class, 'ServiceStore'])->name('store.service');
+            Route::get('/view', [ServiceController::class, 'ServiceView'])->name('service.view');
+            Route::get('/edit/{id}', [ServiceController::class, 'ServiceEdit'])->name('service.edit');
+            Route::post('/update/{id}', [ServiceController::class, 'ServiceUpdate'])->name('update.service');
+            Route::get('/delete/{id}', [ServiceController::class, 'ServiceDelete'])->name('service.delete');
+            Route::get('/intro/create', [ServiceController::class, 'ServiceIntroCreate'])->name('service.intro.create');
+            Route::post('/intro/store', [ServiceController::class, 'ServiceIntroStore'])->name('store.service.intro');
+            Route::get('/intro/view', [ServiceController::class, 'ServiceIntroView'])->name('service.intro.view');
+            Route::get('/intro/edit/{id}', [ServiceController::class, 'ServiceIntroEdit'])->name('service.intro.edit');
+            Route::post('/intro/update/{id}', [ServiceController::class, 'ServiceIntroUpdate'])->name('update.service.intro');
+            Route::get('/intro/delete/{id}', [ServiceController::class, 'ServiceIntroDelete'])->name('service.intro.delete');
+
+        });
+
+          //============contact======
+
+
+          route::prefix('contact')->group(function(){
+            Route::get('/view', [ContactController::class, 'ContactView'])->name('contact.view');
+            Route::get('/detail/{id}', [ContactController::class, 'ContactDetail'])->name('contact.detail');
+            Route::get('/delete/{id}', [ContactController::class, 'ContactDelete'])->name('contact.delete');
+            Route::get('/create/address', [ContactController::class, 'ContactAddressCreate'])->name('create.contact.address');
+            Route::post('/store/address', [ContactController::class, 'ContactAddressStore'])->name('store.contact.address');
+            Route::get('/view/address', [ContactController::class, 'ContactAddressView'])->name('contact.address.view');
+            Route::get('/edit/address/{id}', [ContactController::class, 'ContactAddressEdit'])->name('contact.address.edit');
+            Route::post('/update/address/{id}', [ContactController::class, 'ContactAddressUpdate'])->name('contact.address.update');
+            Route::get('/delete/address/{id}', [ContactController::class, 'ContactAddressDelete'])->name('contact.address.delete');
+
+            Route::get('/contact_intro/view', [ContactController::class, 'ContactIntroView'])->name('contact_intro.view');
+            Route::get('/contact_intro/create', [ContactController::class, 'ContactIntroCreate'])->name('create.contact_intro');
+            Route::post('/contact_intro/store', [ContactController::class, 'ContactIntroStore'])->name('store.contact_intro');
+
+
+
+
+        });
+
+
         
         
     
@@ -157,6 +204,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
 Route::get('/item/detail/{id}',[DetailController::class ,'ItemDetail'])->name('item.detail');
 Route::get('/compare/product/{id}',[DetailController::class ,'CompareProduct'])->name('compare.product');
 Route::get('/compare/search/product',[DetailController::class ,'CompareSearchProduct'])->name('compare.search.product');
@@ -183,6 +232,10 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::group(['middleware' => 'auth'],function(){
             
         Route::get('/signout', [AuthenticatedSessionController::class, 'destroy'])->name('signout');
+
+        Route::get('/fronted/contact', [HomeController::class, 'FrontendContactView'])->name('fronted.contact');
+        Route::post('/contact/store', [HomeController::class, 'ContactStore'])->name('contact.store');
+
                 
         
         Route::group(['prefix' => 'user'],function(){   

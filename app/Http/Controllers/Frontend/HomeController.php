@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use  App\Models\Contact;
+use  App\Models\ContactAddress;
+use  App\Models\ContactIntro;
 
 class HomeController extends Controller
 {
@@ -31,5 +34,35 @@ class HomeController extends Controller
 
         return view('pages.index',compact('category'));
     }
+
+    public function FrontendContactView(){
+        $allData['contactaddress'] = ContactAddress::all();
+        $allData['contactintro'] = ContactIntro::all();
+        //dd($allData['contactintro'][0]->toArray());
+        return view('pages.contact',$allData);
+    }
+
+    public function ContactStore(Request $request){
+        //dd($request->toArray());
+        $request->validate([                       
+            'name' => "required",  
+            'email' => 'required',
+            'message' => 'required',
+
+        ]
+      );
+
+      $data = new Contact;
+
+      $data->name = $request->name;
+      $data->email = $request->email;
+      $data->phone = $request->phone;
+      $data->message = $request->message;
+
+      $data->save();
+
+      return redirect()->back()->with('success'," message send successfully");
+
+    }//end function
  
 }
