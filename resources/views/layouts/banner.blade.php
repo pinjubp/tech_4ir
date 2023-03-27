@@ -5,36 +5,22 @@
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{{ asset('frontend/images/Xiaomi-Mijia-Smart-Door-Lock-Youth-dizajn-6.png') }}"  class=" img-fluid w-100  h-auto " alt="">
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{{ asset('frontend/images/Xiaomi-Mijia-Smart-Door-Lock-Youth-dizajn-6.png') }}" class=" img-fluid w-100 h-auto"  alt="">
+      
+      @foreach ($introdata as $data)
+        <div class="carousel-item @if ($data->id == 1) active @endif">
+           
+         
+        <img src="{{ (!empty($data->banner ))?
+          url('upload/intro_img/'.$data->banner):url('upload/no_image.jpg')   }}" class=" img-fluid w-100 h-auto"  alt="">
         <div class="container">
           <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            <h1>{{ $data->introduction }}</h1>
+            <p>{!! $data->intro_details !!}</p>
+            <p><a class="btn btn-lg btn-primary" href="{{ route('item.detail',$data->link)  }}">Learn more</a></p>
           </div>
         </div>
       </div>
-      <div class="carousel-item">
-        <img src="{{ asset('frontend/images/Xiaomi-Mijia-Smart-Door-Lock-Youth-dizajn-6.png') }}" class=" img-fluid w-100 h-auto"  alt="">
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div>
+      @endforeach            
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>

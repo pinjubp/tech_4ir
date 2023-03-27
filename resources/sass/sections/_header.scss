@@ -62,12 +62,6 @@ header{
        
     }
 
-    // .leftbg{
-    //     background-color: brown;
-    // }
-    // .rightbg{
-    //     background-color: rgb(42, 165, 95);
-    // }
     
 
     .nav{
@@ -85,4 +79,15 @@ header{
 	    transform: translateY(40px);
 	    transition: transform .3s;
 	}
+
+    #searchbox{
+
+        a{
+            color: $secondary;
+
+        }
+        button{
+            color: $secondary; 
+        }
+    }
 }

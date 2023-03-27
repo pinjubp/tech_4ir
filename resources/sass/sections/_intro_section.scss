@@ -1,3 +1,17 @@
+@import '../custom';
 #myCarousel{
-    z-index: -1;
+    z-index: 1;
+    color: $secondary;
+
+    h1{
+        color: $secondary; 
+    }
+
+    .carousel-caption{
+        color: $secondary; 
+    }
+
+    a{
+        color: $secondary; 
+    }
 }

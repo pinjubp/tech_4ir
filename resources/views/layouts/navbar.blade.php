@@ -25,10 +25,10 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('fronted.contact') }}">Service</a>
+          <a class="nav-link" href="{{ route('fronted.service') }}">Service</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('fronted.contact') }}">About</a>
+          <a class="nav-link" href="{{ route('fronted.about') }}">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('fronted.contact') }}">Contact</a>

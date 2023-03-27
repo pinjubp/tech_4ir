@@ -1,7 +1,7 @@
 @import '../custom';
 
 #footer{
-    background-color: $black;
+    background-color: $primary;
 
     .container{
         padding: 20px 10px;
@@ -9,18 +9,22 @@
         h3{
             font-size: large;
             font-weight: 600;
-            color: $white;
+            color: $secondary;
         }
 
         h4{
             font-size:medium;
             font-weight: 600;
-            color: $white;
+            color: $secondary;
         }
 
         p{
-            color: $white;   
+            color: $secondary;   
         }
+        a{
+            color: $secondary; 
+
+        }    
         
         .col{
             padding: 0 10px;
@@ -29,7 +33,12 @@
                 display: block;
 
                 a{
-                    color: $white; 
+                    color: $secondary; 
+                    text-decoration: none;
+                   
+                    &:hover{
+                        text-decoration: underline;
+                    }
                 }
             }
         }

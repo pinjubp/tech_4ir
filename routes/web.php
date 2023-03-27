@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\SpecificationController;
 use App\Http\Controllers\Backend\SpecificationValueController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\IntoController;
 
 
 
@@ -178,6 +179,21 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
         });
 
+        route::prefix('intro')->group(function(){
+            Route::get('/create', [IntoController::class, 'CreateIntro'])->name('intro.create');
+            Route::post('/store', [IntoController::class, 'IntroStore'])->name('store.intro');
+            Route::get('/view', [IntoController::class, 'IntroView'])->name('view.intro');
+            Route::get('/edit/{id}', [IntoController::class, 'IntroEdit'])->name('intro.edit');
+            Route::post('/update/{id}', [IntoController::class, 'IntroUpdate'])->name('update.intro');
+            Route::get('/delete/{id}', [IntoController::class, 'IntroDelete'])->name('intro.delete');
+            Route::get('/active/{id}', [IntoController::class, 'IntroActive'])->name('active.intro');
+            Route::get('/inactive/{id}', [IntoController::class, 'IntroInactive'])->name('inactive.intro');
+
+            Route::get('/toggle/{id}', [IntoController::class, 'IntroToggle'])->name('toggle.intro');
+
+
+        });
+
 
         
         
@@ -204,6 +220,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/fronted/service/', [HomeController::class, 'FrontedService'])->name('fronted.service');
+Route::get('/fronted/about/', [HomeController::class, 'FrontedAbout'])->name('fronted.about');
 
 
 Route::get('/item/detail/{id}',[DetailController::class ,'ItemDetail'])->name('item.detail');

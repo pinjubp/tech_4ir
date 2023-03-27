@@ -3,19 +3,18 @@
         <div class="row">
             <div class="col-md-4">
                 <h3>Fourth Industrial Revolution technologies</h3>
-                <p>SmartLife Technology Limited is the pioneer 
-                    of Smart Home Automation in Bangladesh. 
-                    Smartlife has highly skilled expert teams
-                     with in-depth knowledge &amp; experience in smart home automation
-                      and associated setup &amp; installations.
-                       Now you can easily get any original smart
-                        device with warranty. For any kind of question or problem, 
-                        we are just a phone call away!</p>
+                <p>Loren ipsun dolor sit anet, consectetur adipisci elit,
+                     sed eiusnod tenpor incidunt ut labore et dolore nagna aliqua. 
+                     Ut enin ad ninin venian, quis nostrun exercitationen ullan corporis
+                      suscipit laboriosan, nisi ut aliquid ex ea connodi consequatur. 
+                      Quis aute iure reprehenderit in voluptate velit esse cillun 
+                      dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident,
+                       sunt in culpa qui officia deserunt nollit anin id est laborun</p>
             </div>
             <div class="col-md-4">
                 <h3>MORE INFORMATION</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Service</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms &amp; Conditions</a></li>                    
                 </ul>
@@ -39,7 +38,7 @@
                         </li>
                         <li>
                             <h4>EMAIL:</h4>
-                            <p>support@smartlife.com.bd</p>
+                            <p>support@fourir.com.bd</p>
                         </li>
                     </ul>
 

@@ -126,6 +126,18 @@
            
           </ul>
         </li> 
+        <li class="treeview">
+          <a href="#">
+            <i data-feather="home"></i> <span>Intro Section</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('intro.create') }}"><i class="ti-more"></i>Create Intro Section</a></li>
+            <li><a href="{{ route('view.intro') }}"><i class="ti-more"></i>List of Intro Section</a></li>            
+          </ul>
+        </li>
         
         <li class="treeview">
           <a href="#">
@@ -139,8 +151,7 @@
             <li><a href="{{ route('service.create') }}"><i class="ti-more"></i>Create Service</a></li>
             <li><a href="{{ route('service.view') }}"><i class="ti-more"></i>Service List</a></li>
             <li><a href="{{ route('service.intro.create') }}"><i class="ti-more"></i>Create Service Into</a></li>
-            <li><a href="{{ route('service.intro.view') }}"><i class="ti-more"></i>Service Into List</a></li>
-           
+            <li><a href="{{ route('service.intro.view') }}"><i class="ti-more"></i>Service Into List</a></li>        
           </ul>
         </li>
         

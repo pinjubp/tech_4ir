@@ -34,13 +34,13 @@
     </div>
     <div class="container" >
         <div class="row">
-            <div class="col-sm-6"><a class="logo" href="{{ route('home') }}">Fourth Industrial Revolution technologies</a></div>
+            <div class="col-sm-6"><a  href="{{ route('home') }}"><img src="{{ asset('upload/4ir2.png') }}" width="150"  alt=""></a></div>
             <div class="col-sm-6">
                 
 
-                <div class="input-group mt-5 mb-3">
+                <div id="searchbox"  class="input-group mt-5 mb-3">
                     <input type="text"  autocomplete="off" id="mainsearch"  class="form-control" aria-label="Text input with dropdown button">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Category</button>
+                    <button class="btn btn-primary  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Category</button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         @foreach ($category as $item)
                             <li><a class="dropdown-item" href="{{ route('search.category.product',$item->id) }}">{{ $item->category_name  }}</a></li>

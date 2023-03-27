@@ -10,14 +10,17 @@ use Illuminate\Support\Facades\DB;
 use  App\Models\Contact;
 use  App\Models\ContactAddress;
 use  App\Models\ContactIntro;
+use App\Models\Intro;
+use App\Models\Service;
+use App\Models\ServiceIntro;
 
 class HomeController extends Controller
 {
     //
     public function index(){
     
-
-        $category = DB::table('categories')
+        $data['introdata'] = Intro::where('status',1)->get();
+        $data['category']= DB::table('categories')
                     ->Join('products','categories.id','=','products.category_id')                                                                                
                     ->whereNotNull('products.category_id')
                     ->select('categories.*')                                         
@@ -30,9 +33,9 @@ class HomeController extends Controller
 
         //$category = DB::select("select * from categories inner join products on products.category_id = categories.id where products.category_id is not null group by products.category_id");
 
-        //dd($category->toArray());
+        //dd($data['introdata']->toArray());
 
-        return view('pages.index',compact('category'));
+        return view('pages.index',$data);
     }
 
     public function FrontendContactView(){
@@ -64,5 +67,18 @@ class HomeController extends Controller
       return redirect()->back()->with('success'," message send successfully");
 
     }//end function
+
+    public function FrontedService(){
+        $data['service'] = Service::all();
+        $data['serviceintro'] = ServiceIntro::first();
+
+        //dd($data['serviceintro']->toArray()); 
+
+        return view('pages.service',$data);
+    }
+
+    public function FrontedAbout(){
+        return view('pages.about');
+    }
  
 }
