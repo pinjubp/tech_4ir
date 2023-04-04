@@ -67,9 +67,9 @@
                                                  <a href="{{ route('detail.user',$data->id) }}" class="btn btn-sm btn-success m-1"><i class="fa fa-eye"></i></a>
                                                 <a href="{{ route('delete.user',$data->id) }}" class="btn btn-sm btn-danger m-1" id="delete"><i class="fa  fa-trash"></i></a>
                                                 @if ($data->status == 0)
-                                                    <a href="#"  route="{{ route('toggle.intro',$data->id) }}" class="btn btn-sm btn-warning m-1 toggle-class" title="Inactive" ><i class="fa fa-arrow-down"></i></a>  
+                                                    <a href="#"  route="{{ route('user.toggle',$data->id) }}" class="btn btn-sm btn-warning m-1 toggle-class" title="Inactive" ><i class="fa fa-arrow-down"></i></a>  
                                                 @else
-                                                    <a href="#"  route="{{ route('toggle.intro',$data->id) }}" class="btn btn-sm btn-warning m-1 toggle-class" title="active" ><i class="fa fa-arrow-up"></i></a>  
+                                                    <a href="#"  route="{{ route('user.toggle',$data->id) }}" class="btn btn-sm btn-warning m-1 toggle-class" title="active" ><i class="fa fa-arrow-up"></i></a>  
                                                 @endif
                                             @endif
                                         </td>                                        
@@ -121,15 +121,11 @@
                   //console.log(data);                    
                   if(data == '1'){                
                       $(element).children('i').removeClass('fa-arrow-down');
-                      $(element).children('i').addClass('fa-arrow-up');   
-                      $(element).addClass('btn-warning'); 
-                      $(element).removeClass('btn-danger');
+                      $(element).children('i').addClass('fa-arrow-up');                        
                       $(element).attr('title', 'active');             
                  }else{                        
                        $(element).children('i').removeClass('fa-arrow-up');
-                       $(element).children('i').addClass('fa-arrow-down'); 
-                       $(element).removeClass('btn-warning');   
-                       $(element).addClass('btn-danger');  
+                       $(element).children('i').addClass('fa-arrow-down');                        
                        $(element).attr('title', 'Inactive');             
                  } 
                   

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Mews\Captcha;
+use Laravel\Fortify\Features;
 
 class UserController extends Controller
 {
@@ -23,13 +24,15 @@ class UserController extends Controller
     public function storeUser(Request $request){
         //dd($request->toArray());
 
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'password_confirmation' => 'same:password',
             //'captcha' => 'required|captcha',
         ]);
+
+        //dd($validated);
 
        
 
@@ -39,12 +42,20 @@ class UserController extends Controller
         $data->email = $request->email;
         $data->password = hash::make($request->password);
 
-        //$flag =  $data->save();
-        if($data->save()){
-        return redirect()->route('profile_complete')->with('success',"registration success");
-        } else {
-            return redirect()->back()->with('error','something wrong');
+        $data->save();
+
+        if(Features::emailVerification()){
+            return redirect()->route('verification.notice')->with('warning',"Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.");
         }
+
+        
+
+        //$flag =  $data->save();
+        // if($data->save()){
+        // return redirect()->route('verification.notice')->with('warning',"Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.");
+        // } else {
+        //     return redirect()->back()->with('error','something wrong');
+        // }
         
     }//end function
 

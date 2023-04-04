@@ -76,6 +76,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             
             Route::get('/detail/{id}', [UserProfileController::class, 'DetailUser'])->name('detail.user');
             Route::get('/delete/{id}', [UserProfileController::class, 'DeleteUser'])->name('delete.user');
+            Route::get('/toggle/{id}', [UserProfileController::class, 'userToggle'])->name('user.toggle');
             
 
         }); //prefix=user  
@@ -244,6 +245,7 @@ Route::get('/search/brand/product/{id}',[SearchController::class ,'SearchBrandPr
 
 /*====================vendor==user==============part================================================*/
 Route::get('reload-captcha', [UserController::class, 'reloadCaptcha']);
+Route::post('/store/user/', [UserController::class, 'storeUser'])->name('store.user'); 
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
 

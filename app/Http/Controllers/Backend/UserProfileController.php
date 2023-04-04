@@ -16,7 +16,8 @@ class UserProfileController extends Controller
     }//end function
 
 
-    public function IntroToggle($id){       
+    public function userToggle($id){ 
+                
         $data =User::find($id);
         if($data->status == 1){
             User::where('id',$id)->update(['status'=> 0]);

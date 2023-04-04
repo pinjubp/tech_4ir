@@ -18,7 +18,7 @@
                         <input type="submit" class="btn btn-primary mx-auto d-block" value="Resend Verification Email">                        
                     </div>
                 </form>
-                <a href="{{ route('profile.show') }}" class="btn btn-secondary mx-auto d-block  mt-3 mb-3" style="width: 200px;"> Edit Profile</a>
+                {{-- <a href="{{ route('profile.show') }}" class="btn btn-secondary mx-auto d-block  mt-3 mb-3" style="width: 200px;"> Edit Profile</a> --}}
 
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf                            
